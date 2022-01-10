@@ -1,0 +1,41 @@
+{{ $data := or (index .Site.Data .Site.Language.Lang).content .Site.Data.content }}
+{{ .Scratch.Set "data" $data }}
+<!DOCTYPE html>
+
+<html lang="{{ .Site.LanguageCode }}">
+    <head>
+        {{ partial "head.html" . }}
+    </head>
+    <body>
+        <div class="main-wrapper">
+            <div id="container px-3 px-lg-5">
+                <article class="mx-auto p-5 mb-5 my-5 shadow-lg">
+                    {{ partial "header.html" $data }}
+                    <hr>
+                    {{ partial "summary.html" $data }}
+                    <hr>
+                    <div class="">
+                        <div class="row">
+                            <div class="col-12 col-lg-12 col-xl-12 pr-0 pr-lg-5">
+                                {{ partial "experience.html" $data }}
+                                <hr>
+                                {{ partial "education.html" $data }}
+                                <hr>
+                                {{ partial "project.html" $data }}
+                                <hr>
+                                {{ partial "patent.html" $data }}
+                                <hr>
+                                {{ partial "language.html" $data }}
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    {{ partial "social.html" $data }}
+                </article>    
+            </div>
+            {{- partial "footer.html" . -}}
+        </div>
+        {{- partial "script.html" . -}}
+    </body>
+</html>
+

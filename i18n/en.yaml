@@ -1,0 +1,20 @@
+- id: education
+  translation: "Education"
+- id: experiences
+  translation: "Experience"
+- id: languages
+  translation: "Languages"
+- id: projects
+  translation: "Projects"
+- id: keyskills
+  translation: "Key Skills"
+- id: graduationproject
+  translation: "Graduation Project:"
+- id: grade
+  translation: "Grade:"
+- id: patents
+  translation: "Patents"
+- id: granted
+  translation: "Granted:"
+- id: filed
+  translation: "Filed:"

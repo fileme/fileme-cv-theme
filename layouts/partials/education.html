@@ -1,0 +1,27 @@
+
+<section class="education-section py-3">
+    <h3 class="text-uppercase mb-4">{{ i18n "education" }}</h3>
+    {{ range .Education }}
+        <div class="item mb-3">
+            <div class="item-heading row align-items-center">
+                <h4 class="item-title col-9 text-muted">{{ .Place }}</h4>
+                <div class="col-3 text-right float-right text-muted">{{ .Date }}</div>
+            </div>
+            <div class="item-heading row align-items-center">
+                <h4 class="item-title col-8 education-course font-weight-bold">{{ .Course }}</h4>
+                <div class="item-meta col-4 text-right float-right font-weight-bold">{{ .Grade }}</div>
+            </div>
+            <div class="row">
+                <div class="item-content">
+                    <h4 class="item-title align-items-center mb-2 col-12">{{ i18n "graduationproject" }} {{ .GraduationProject.Name }}</h4>
+                    <p class="align-items-center mb-2 col-12">{{ .GraduationProject.Description }}</p>
+                    <ul style="list-style: inside;">
+                        {{ range .GraduationProject.Details }}
+                        <li>{{ .  | safeHTML}}</li>
+                        {{ end }}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {{ end }}
+</section>
