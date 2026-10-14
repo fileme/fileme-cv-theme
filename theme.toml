@@ -8,7 +8,7 @@ description = "A theme for my CV"
 homepage = "https://www.fileme.info/"
 tags = []
 features = []
-min_version = "0.41.0"
+min_version = "0.158.0"
 
 [author]
   name = "Ahmed Hosny"

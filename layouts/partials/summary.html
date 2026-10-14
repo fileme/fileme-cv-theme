@@ -2,13 +2,18 @@
 <div class="py-3">
     <div class="media flex-column flex-md-row align-items-center">
         <div class="row">
-            <div class="col-8">
+            <div class="col-12 col-md-8 order-2 order-md-1">
                 <div class="media-body text-left">
-                    <p class="mb-0">{{ .BasicInfo.Profile | markdownify }}</p>
+                    <div class="mb-0">{{ .BasicInfo.Profile | markdownify }}</div>
                 </div>
             </div>
-            <div id="pic" class="col-4">
-                <div class="LI-profile-badge float-right"  data-version="v1" data-size="medium" data-locale="en_US" data-type="horizontal" data-theme="light" data-vanity="{{.BasicInfo.LinkedInHandle}}">
+            <div id="pic" class="col-12 col-md-4 order-1 order-md-2 mb-3 mb-md-0 text-center text-md-right">
+                <div class="LI-profile-badge d-inline-block"  data-version="v1" data-size="medium" data-locale="en_US" data-type="horizontal" data-theme="light" data-vanity="{{.BasicInfo.LinkedInHandle}}">
+                    {{ with .BasicInfo.Photo }}
+                    <a href="https://www.linkedin.com/in/{{ $.BasicInfo.LinkedInHandle }}" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ . | relURL }}" alt="{{ $.BasicInfo.Name }}" class="img-fluid rounded-circle" width="200" height="200">
+                    </a>
+                    {{ end }}
                 </div>
             </div>
         </div>
