@@ -8,12 +8,21 @@
                 </div>
             </div>
             <div id="pic" class="col-12 col-md-4 order-1 order-md-2 mb-3 mb-md-0 text-center text-md-right">
-                <div class="LI-profile-badge d-inline-block"  data-version="v1" data-size="medium" data-locale="en_US" data-type="horizontal" data-theme="light" data-vanity="{{.BasicInfo.LinkedInHandle}}">
-                    {{ with .BasicInfo.Photo }}
-                    <a href="https://www.linkedin.com/in/{{ $.BasicInfo.LinkedInHandle }}" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ . | relURL }}" alt="{{ $.BasicInfo.Name }}" class="img-fluid rounded-circle" width="200" height="200">
-                    </a>
-                    {{ end }}
+                <div class="card shadow-sm d-inline-block text-center" style="max-width: 260px;">
+                    <div class="card-body">
+                        {{ with .BasicInfo.Photo }}
+                        <img src="{{ . | relURL }}" alt="{{ $.BasicInfo.Name }}" class="rounded-circle mb-3" width="120" height="120">
+                        {{ end }}
+                        <h5 class="card-title mb-1">{{ .BasicInfo.Name }}</h5>
+                        {{ with index .Experience 0 }}
+                        <p class="card-text text-muted small mb-3">{{ (index .Positions 0).Title | safeHTML }} at {{ .Employer | safeHTML }}</p>
+                        {{ end }}
+                        {{ with .BasicInfo.LinkedInHandle }}
+                        <a class="btn btn-sm text-white" style="background-color: #0a66c2;" href="https://www.linkedin.com/in/{{ . }}" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin fa-fw mr-1"></i>View profile
+                        </a>
+                        {{ end }}
+                    </div>
                 </div>
             </div>
         </div>
