@@ -1,4 +1,11 @@
-
-<footer class="footer text-center py-4">
-    <small class="copyright">{{ now.Year }} &copy; {{ .Site.Copyright | markdownify }}</small>
+{{- /* Copyright and build info. Build values come from HUGO_PARAMS_BUILD_VERSION, _COMMIT, _DESCRIBE and _TIME; local builds show "dev build". */ -}}
+{{- $build := site.Params.build | default dict -}}
+<footer class="text-center pt-3">
+    <small class="text-muted">
+        &copy; {{ now.Year }} {{ .Site.Copyright | markdownify }}
+        {{- with $build.version }} · v{{ . }}{{ else }} · dev build{{ end -}}
+        {{- with $build.commit }} · {{ substr . 0 7 }}{{ end -}}
+        {{- with $build.describe }}{{ if not (hasPrefix ($build.commit | default "") .) }} · {{ . }}{{ end }}{{ end -}}
+        {{- with $build.time }} · <time datetime="{{ . }}">{{ (time.AsTime .).UTC.Format "2006-01-02 15:04" }} UTC</time>{{ end -}}
+    </small>
 </footer>

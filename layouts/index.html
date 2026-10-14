@@ -7,35 +7,21 @@
         {{ partial "head.html" . }}
     </head>
     <body>
-        <div class="main-wrapper">
-            <div id="container px-3 px-lg-5">
-                <article class="mx-auto p-3 p-md-5 mb-5 my-md-5 shadow-lg">
-                    {{ partial "header.html" $data }}
-                    <hr>
-                    {{ partial "summary.html" $data }}
-                    <hr>
-                    <div class="">
-                        <div class="row">
-                            <div class="col-12 col-lg-12 col-xl-12 pr-md-0 pr-lg-5">
-                                {{ partial "experience.html" $data }}
-                                <hr>
-                                {{ partial "education.html" $data }}
-                                <hr>
-                                {{ partial "project.html" $data }}
-                                <hr>
-                                {{ partial "patent.html" $data }}
-                                <hr>
-                                {{ partial "language.html" $data }}
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    {{ partial "social.html" $data }}
-                </article>    
-            </div>
-            {{- partial "footer.html" . -}}
+        <div class="container px-0 px-md-3">
+            <article class="cv-card mx-auto p-3 p-md-5 my-md-5 shadow-sm">
+                {{ partial "header.html" $data }}
+                <hr>
+                {{ partial "summary.html" $data }}
+                {{ partial "experience.html" $data }}
+                {{ partial "education.html" $data }}
+                {{ partial "project.html" $data }}
+                {{ partial "patent.html" $data }}
+                {{ partial "language.html" $data }}
+                <hr class="mt-4">
+                {{ partial "social.html" $data }}
+                {{ partial "footer.html" . }}
+            </article>
         </div>
         {{- partial "script.html" . -}}
     </body>
 </html>
-

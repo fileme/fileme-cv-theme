@@ -1,27 +1,26 @@
-
-<section class="education-section py-3">
-    <h3 class="text-uppercase mb-4">{{ i18n "education" }}</h3>
+<section class="cv-section">
+    <h2 class="cv-section-title">{{ i18n "education" }}</h2>
     {{ range .Education }}
-        <div class="item mb-3">
-            <div class="item-heading row align-items-center">
-                <h4 class="item-title col-9 text-muted">{{ .Place }}</h4>
-                <div class="col-3 text-right float-right text-muted">{{ .Date }}</div>
+        <div class="cv-item">
+            <div class="d-flex flex-wrap justify-content-between align-items-baseline">
+                <h3 class="cv-item-title mr-3">{{ .Course }}</h3>
+                <span class="cv-meta">{{ .Date }}</span>
             </div>
-            <div class="item-heading row align-items-center">
-                <h4 class="item-title col-8 education-course font-weight-bold">{{ .Course }}</h4>
-                <div class="item-meta col-4 text-right float-right font-weight-bold">{{ .Grade }}</div>
+            <div class="d-flex flex-wrap justify-content-between align-items-baseline">
+                <div class="cv-item-subtitle mr-3">{{ .Place }}</div>
+                {{ with .Grade }}<span class="cv-grade">{{ . }}</span>{{ end }}
             </div>
-            <div class="row">
-                <div class="item-content">
-                    <h4 class="item-title align-items-center mb-2 col-12">{{ i18n "graduationproject" }} {{ .GraduationProject.Name }}</h4>
-                    <p class="align-items-center mb-2 col-12">{{ .GraduationProject.Description }}</p>
-                    <ul style="list-style: inside;">
-                        {{ range .GraduationProject.Details }}
-                        <li>{{ .  | safeHTML}}</li>
-                        {{ end }}
-                    </ul>
-                </div>
+            {{ with .GraduationProject }}
+            <div class="mt-2">
+                <div><span class="cv-label">{{ i18n "graduationproject" }}</span> {{ .Name }}</div>
+                {{ with .Description }}<p class="mb-1">{{ . }}</p>{{ end }}
+                {{ with .Details }}
+                <ul class="cv-details">
+                    {{ range . }}<li>{{ . | safeHTML }}</li>{{ end }}
+                </ul>
+                {{ end }}
             </div>
+            {{ end }}
         </div>
     {{ end }}
 </section>

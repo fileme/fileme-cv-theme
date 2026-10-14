@@ -1,9 +1,8 @@
-
-<section class="skills-section py-3">
-    <h3 class="text-uppercase mb-4">{{ i18n "languages" }}</h3>
-    <ul class="list-unstyled">
+<section class="cv-section">
+    <h2 class="cv-section-title">{{ i18n "languages" }}</h2>
+    <ul class="list-inline mb-0">
         {{ range .Languages }}
-            <li class="mb-2">{{ .Name }} <span class="text-muted">({{ .Level }})</span></li>
+            <li class="list-inline-item mr-4 mb-2">{{ .Name }} <span class="cv-meta">({{ .Level }})</span></li>
         {{ end }}
     </ul>
 </section>

@@ -1,37 +1,32 @@
-
-<section class="work-section py-3">
-    <h3 class="text-uppercase mb-4">{{ i18n "experiences" }}</h3>
+<section class="cv-section">
+    <h2 class="cv-section-title">{{ i18n "experiences" }}</h2>
     {{ range .Experience }}
-        <div class="item mb-3">
-            <div class="item-heading row align-items-center mb-2">
-                <h4 class="item-title col-9 col-md-9 col-lg-9 mb-2 mb-md-0"><a href="{{ .Url | safeURL }}" target="_blank" rel="noopener noreferrer">{{ .Employer | safeHTML}}</a></h4>
-                <div class="item-meta col-3 col-md-3 col-lg-3 text-muted text-left text-md-right"><a href="{{ .LocationUrl | safeURL }}" target="_blank" rel="noopener noreferrer">{{ .Place | safeHTML }}</a></div>
+        <div class="cv-employer">
+            <div class="d-flex flex-wrap justify-content-between align-items-baseline">
+                <h3 class="cv-employer-name mb-1">
+                    {{- with .Url }}<a href="{{ . | safeURL }}" target="_blank" rel="noopener noreferrer">{{ end }}{{ .Employer | safeHTML }}{{ with .Url }}</a>{{ end -}}
+                </h3>
+                {{ $locationUrl := .LocationUrl }}
+                {{ with .Place }}
+                <a class="cv-meta" href="{{ $locationUrl | safeURL }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-map-marker-alt fa-fw"></i> {{ . | safeHTML }}</a>
+                {{ end }}
             </div>
             {{ range .Positions }}
-                <div class="item-heading row align-items-center mb-2">
-                    <h4 class="item-title col-8 col-md-8 col-lg-8 mb-2 mb-md-0 font-weight-bold">{{ .Title | safeHTML}}</h4>
-                    <div class="item-meta col-4 col-md-4 col-lg-4 text-muted text-left text-md-right">{{ .Date | safeHTML }}</div>
-                </div>
-                <div class="row pb-3">
-                    <div class="col-12 col-md-3 col-lg-3 col-sm-12 border-right">
-                        <div class="item-content">
-                            <h4 class="item-title">{{ i18n "keyskills" }}</h4>
-                            <ul class="list-unstyled">
-                                {{ range .Badges }}
-                                    <li class="item-meta text-muted text-left text-md-left">{{ .  | safeHTML}}</li>
-                                {{ end }}
-                            </ul>
-                        </div>
+                <div class="cv-position">
+                    <div class="d-flex flex-wrap justify-content-between align-items-baseline">
+                        <h4 class="cv-position-title mb-1 mr-3">{{ .Title | safeHTML }}</h4>
+                        <span class="cv-meta">{{ .Date | safeHTML }}</span>
                     </div>
-                    <div class="col-12 col-md-9 col-lg-9 col-sm-12">
-                        <div class="item-content ">
-                            <ul class="">
-                                {{ range .Details }}
-                                <li>{{ .  | safeHTML}}</li>
-                                {{ end }}
-                            </ul>
-                        </div>
-                    </div>
+                    {{ with .Badges }}
+                    <ul class="cv-skills" aria-label="{{ i18n "keyskills" }}">
+                        {{ range . }}<li>{{ . | safeHTML }}</li>{{ end }}
+                    </ul>
+                    {{ end }}
+                    {{ with .Details }}
+                    <ul class="cv-details">
+                        {{ range . }}<li>{{ . | safeHTML }}</li>{{ end }}
+                    </ul>
+                    {{ end }}
                 </div>
             {{ end }}
         </div>

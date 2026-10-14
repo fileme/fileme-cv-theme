@@ -1,21 +1,20 @@
-
-<section class="project-section py-3">
-    <h3 class="text-uppercase mb-4">{{ i18n "projects" }}</h3>
+<section class="cv-section">
+    <h2 class="cv-section-title">{{ i18n "projects" }}</h2>
     {{ range .Projects }}
-        <div class="item mb-3">
-            <div class="item-heading row align-items-center mb-2">
-                <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0 font-weight-bold">{{ .Name }}</h4>
-                <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">{{ .Location }}</div>
+        <div class="cv-item">
+            {{ if or .Name .Location }}
+            <div class="d-flex flex-wrap justify-content-between align-items-baseline">
+                {{ with .Name }}<h3 class="cv-item-title mr-3">{{ . }}</h3>{{ end }}
+                {{ with .Location }}<span class="cv-meta">{{ . }}</span>{{ end }}
             </div>
+            {{ end }}
             {{ range .Tags }}
-            <div class="item-content">
-                <p>{{ .Description }}</p>
-                <ul style="list-style: inside;">
-                    {{ range .Details }}
-                    <li>{{ .  | safeHTML}}</li>
-                    {{ end }}
+                {{ with .Description }}<p class="mb-2">{{ . }}</p>{{ end }}
+                {{ with .Details }}
+                <ul class="cv-details mb-3">
+                    {{ range . }}<li>{{ . | safeHTML }}</li>{{ end }}
                 </ul>
-            </div>
+                {{ end }}
             {{ end }}
         </div>
     {{ end }}
