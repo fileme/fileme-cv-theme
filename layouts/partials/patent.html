@@ -2,13 +2,11 @@
 <ul class="cv-patents">
     {{ range . }}
     <li>
-        <span>
-            {{ .Title }}
-            <a href="https://patents.google.com/patent/{{ .LinkReference }}/en" target="_blank" rel="noopener noreferrer" aria-label="{{ .LinkReference }} on Google Patents">
-                <i class="fas fa-external-link-alt fa-fw fa-sm"></i>
-            </a>
-        </span>
-        {{ with .Authors }}<span class="cv-meta">{{ . }}</span>{{ end }}
+        <div class="cv-patent-title">{{ .Title }}</div>
+        <div class="cv-meta">
+            <a href="https://patents.google.com/patent/{{ .LinkReference }}/en" target="_blank" rel="noopener noreferrer" title="View on Google Patents">{{ .LinkReference }}</a>
+            {{- with .Authors }} · {{ . }}{{ end }}
+        </div>
     </li>
     {{ end }}
 </ul>
