@@ -1,12 +1,18 @@
 <section class="cv-section">
     <h2 class="cv-section-title">{{ i18n "projects" }}</h2>
     {{ range .Projects }}
+        {{ $url := .Url }}
         <div class="cv-item">
-            {{ if or .Name .Location }}
+            {{ if or .Name .Location .Url }}
             <div class="d-flex flex-wrap justify-content-between align-items-baseline">
-                {{ with .Name }}<h3 class="cv-item-title mr-3">{{ . }}</h3>{{ end }}
-                {{ with .Location }}<span class="cv-meta">{{ . }}</span>{{ end }}
+                {{ with .Name }}<h3 class="cv-item-title mr-3">{{ if $url }}<a href="{{ $url }}" target="_blank" rel="noopener noreferrer">{{ . }}</a>{{ else }}{{ . }}{{ end }}</h3>{{ end }}
+                {{ with .Location }}<span class="cv-meta">{{ . }}</span>{{ else }}{{ with .Url }}<span class="cv-meta">{{ (urls.Parse .).Host }}</span>{{ end }}{{ end }}
             </div>
+            {{ end }}
+            {{ with .Badges }}
+            <ul class="cv-skills" aria-label="{{ i18n "keyskills" }}">
+                {{ range . }}<li>{{ . | safeHTML }}</li>{{ end }}
+            </ul>
             {{ end }}
             {{ range .Tags }}
                 {{ with .Description }}<p class="mb-2">{{ . }}</p>{{ end }}

@@ -131,6 +131,14 @@ a {
     margin-bottom: 0.125rem;
 }
 
+.cv-item-title a {
+    color: var(--cv-text);
+}
+
+.cv-item-title a:hover {
+    color: var(--cv-accent);
+}
+
 .cv-item-subtitle {
     color: var(--cv-muted);
 }
